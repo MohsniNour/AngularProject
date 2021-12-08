@@ -1,0 +1,27 @@
+<div class="container my-4">
+  <div class="row col-12">
+    <h2 class="fa col-8">Ajouter un nouveau stock</h2>
+    <a [routerLink]="['/ShowActiveStocks']" class="col-4">
+      <button class="btn btn-outline-dark fa offset-5 btn-md">
+        Retourner
+      </button>
+    </a>
+  </div>
+</div>
+<div class="container my-2 w-100" id="about">
+  <form [formGroup]="stockForm" (ngSubmit)="SaveStock(stockForm.value)">
+    <div class="mb-3">
+      <label for="" class="form-label">Libelle stock</label>
+      <input formControlName="libelleStock" type="text" class="form-control" id="libelleStock" />
+
+      <label for="" class="form-label">Qantité stock</label>
+      <input formControlName="qteStock" type="number" class="form-control" id="qteStock" />
+
+      <label for="" class="form-label">Quantité minimum du stock</label>
+      <input formControlName="qteMin" type="number" class="form-control" id="qteMin" />
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+  </form>
+</div>

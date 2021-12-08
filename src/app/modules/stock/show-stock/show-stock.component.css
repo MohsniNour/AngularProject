@@ -1,0 +1,167 @@
+body::before {
+    display: block;
+    content: ' ';
+    height: 60px;
+  }
+  
+  body {
+    overflow-x: hidden;
+    color: #505962;
+  }
+  .size{
+    font-size: 22px !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 3px !important;
+  }
+  .caption {
+    position: absolute;
+    top: 35%;
+    width: 100%;
+    z-index: 1;
+    text-transform: uppercase;
+  }
+  @media screen and (max-width:600px){
+    .caption h1, .caption h3{
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media screen and (min-width:768px){
+    .caption{
+      top:40% !important;
+    }
+  }
+  @media screen and (max-width:768px){
+    .about-section-card{
+      margin-bottom:1rem !important;
+    }
+    }
+  
+  .service-wrap {
+    z-index: -999 !important;
+  }
+  
+  .service-background {
+    padding: 5rem 0;
+    z-index: 1000 !important;
+    
+  }
+  
+  #contact {
+    z-index: 1000;
+  }
+  
+  .center-content-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .custom-navbar:active {
+    font-weight: 700 !important;
+  }
+  
+  .custom-navbar-container{
+    justify-content: center;
+  }
+  .line{
+    border-bottom: solid 1px;
+  }
+  .line-contact{
+    border-bottom: solid 1px;
+    width: 25% !important;
+  }
+  
+  .contact-btn{
+    border-radius: 10px 10px  ;
+    border: solid 2px;
+  }
+  
+  .small-links{
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none !important;
+    width: 30%;
+    list-style-type: none;
+  }
+  .fab{
+    color: white !important;
+    font-size: 2rem;
+  }
+  .fab:hover{
+    color: #dc3554;
+  }
+  .active{
+    font-weight: bold;
+  }
+  
+  /*============= FOOTER =============*/
+  .social{
+    list-style: none;
+  }
+  .social li{
+    padding: 0 10px;
+  }
+  .footer{
+    background-color: #383838;
+  }
+  .footer-logo{
+    width: 10% !important;
+  }
+  /*===== FIXED BACKGROUND IMG =====*/
+  .fixed {
+    position: fixed;
+    /* The element is positioned relative to the viewport which means it always stays in the same place even if the page is scrolled.*/
+    display: block;
+    /* An element starts on a new line and takes the whole width. */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    /* The background image covers the entire container even if it's stretched or croped */
+    background-position: center center;
+  }
+  
+  .fixed-background {
+    position: relative;
+    /* The element is positioned relative to its normal position + set the top, bottom... properties to adjust the position */
+    width: 100%;
+  }
+  
+  .fixed-wrap {
+    clip: rect(0, auto, auto, 0);
+    /*clip-path: inset(10%, 10%, 10%, 10%);*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  .services {
+    position: sticky;
+    bottom: 100px;
+    z-index: -100;
+  }
+  
+  /*============= MEDIA QUERIES =============*/
+  
+  /* Devices under 1199px (xl) */
+  @media (min-width: 1200px) {
+  }
+  /* Devices under 992px (lg) */
+  @media (max-width: 992px) {
+    
+  }
+  /* Devices under 768px (md) */
+  @media (max-width: 768px) {
+    
+  }
+  /* Devices under 576px (sm) */
+  @media (max-width: 576px) {
+    
+  }
+  

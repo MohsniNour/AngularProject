@@ -1,0 +1,16 @@
+<form #modelF="ngForm">
+    <label>Id stock </label>
+    <input type="number" class="form-control" name="idStock" [(ngModel)]="stock.idStock" #idStock="ngModel" disabled />
+
+    <label>Quantité stock</label>
+    <input type="number" class="form-control" [(ngModel)]="stock.qteStock" #qteStock="ngModel" name="qteStock" />
+
+    <label>Quantité minimum</label>
+    <input type="number" class="form-control" name="qteMin" [(ngModel)]="stock.qteMin" #qteMin="ngModel" />
+
+    <label>Libelle </label>
+    <input type="text" class="form-control" name="libelleStock" [(ngModel)]="stock.libelleStock"
+        #libelleStock="ngModel" />
+
+    <input type="submit" class="btn btn-primary" value="Update" (click)="UpdateStock(modelF.value)" />
+</form>
