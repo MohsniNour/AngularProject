@@ -227,17 +227,17 @@
 
 [class*="sidebar-light-"] {
   // Sidebar background color
-  background-color: $sidebar-light-bg;
+  background-color: #6e55ff;
 
   // User Panel (resides in the sidebar)
   .user-panel {
     a:hover {
-      color: $sidebar-light-hover-color;
+      color: #6e55ff;
     }
 
     .status {
-      background-color: $sidebar-light-hover-bg;
-      color: $sidebar-light-color;
+      background-color: #6e55ff;
+      color: #6e55ff;
 
       &:hover,
       &:focus,

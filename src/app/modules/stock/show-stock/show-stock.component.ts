@@ -4,7 +4,8 @@ import { Stock } from 'src/app/Models/Stock';
 import { StockService } from 'src/app/service/stock/stock.service';
 import { AddStockComponent } from '../add-stock/add-stock.component';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-//import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-show-stock',
   templateUrl: './show-stock.component.html',
@@ -13,8 +14,9 @@ import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 export class ShowStockComponent implements OnInit, AfterViewInit {
   @ViewChild(AddStockComponent) c!: AddStockComponent;
 
-
-  constructor(private service: StockService, private router: Router) {
+  p: number = 1;
+  constructor(private service: StockService, private router: Router, private dialog: MatDialog,
+    private modalService: NgbModal) {
 
   }
 
@@ -25,6 +27,7 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
   ListStock!: Stock[];
   ListStockPassive!: Stock[];
   test!: Stock;
+
 
   ngOnInit(): void {
     this.GetAllStock();
@@ -90,30 +93,27 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
     console.log("++++++++++++++++++++++");
   }
 
+  onCreate() {
 
-  // **********************************************************************************************
-  //onCreate() {
+    this.dialog.open(ShowStockComponent);
+  }
+  closeResult = '';
 
-  //   this.dialog.open(AddStockComponent);
-  // }
-  // closeResult = '';
-
-
-  // open(content: any) {
-  //   this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-  //     this.closeResult = `Closed with: ${result}`;
-  //   }, (reason) => {
-  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  //   });
-  // }
-  // private getDismissReason(reason: any): string {
-  //   if (reason === ModalDismissReasons.ESC) {
-  //     return 'by pressing ESC';
-  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-  //     return 'by clicking on a backdrop';
-  //   } else {
-  //     return `with: ${reason}`;
-  //   }
-  // }
+  open(content: any) {
+    this.modalService.open(content, { size: 'xl' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 
 }

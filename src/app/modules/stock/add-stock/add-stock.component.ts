@@ -11,7 +11,7 @@ import { ShowStockComponent } from '../show-stock/show-stock.component';
   styleUrls: ['./add-stock.component.css']
 })
 export class AddStockComponent implements OnInit {
-  @Input() stocks!: Stock; //composant fils peut recevoir des informations depuis son composant parent
+  @Input() stocks!: Stock;
   @Output() notif = new EventEmitter<Stock>();
   //@ViewChild(GetStockComponent) c!: GetStockComponent;
 
@@ -55,13 +55,13 @@ export class AddStockComponent implements OnInit {
     console.log(data.idStock);
     this.service.addStock(data).subscribe(
       () => {
-        this.notif.emit(data)
+        this.notif.emit(data),
+          this.router.navigateByUrl('ShowActiveStocks')
       },
       (error) => {
         console.log(error);
       }
     );
-    this.router.navigateByUrl('stock');
   }
 
 }

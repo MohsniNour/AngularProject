@@ -7,7 +7,8 @@ import { PageContentComponent } from './template/pages/page-content/page-content
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StockModule } from './modules/stock/stock.module'
+import { StockModule } from './modules/stock/stock.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { StockModule } from './modules/stock/stock.module'
     AppRoutingModule,
     BrowserAnimationsModule,
     StockModule,
+    NgbModule,
     //MatDialogModule,
     //NgbModule,
     //MaterialModule

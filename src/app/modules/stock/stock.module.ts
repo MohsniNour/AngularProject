@@ -8,7 +8,8 @@ import { DeleteStockComponent } from './delete-stock/delete-stock.component';
 import { ShowStockComponent } from './show-stock/show-stock.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     StockRoutingModule,
     FormsModule,
+    MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxPaginationModule
   ]
 })
 export class StockModule { }

@@ -142,21 +142,21 @@ body,
     // Sidebar variants brand-link fix
     @each $name, $color in $theme-colors {
       .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
-        background-color: $sidebar-dark-bg;
+        background-color: #6e55ff;
       }
 
       .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
-        background-color: $sidebar-light-bg;
+        background-color: #6e55ff;
       }
     }
 
     @each $name, $color in $colors {
       .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
-        background-color: $sidebar-dark-bg;
+        background-color: #6e55ff;
       }
 
       .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
-        background-color: $sidebar-light-bg;
+        background-color: #6e55ff;
       }
     }
 
@@ -659,11 +659,11 @@ body:not(.layout-fixed) {
     .layout-navbar-fixed & {
       @each $name, $color in $theme-colors-alt {
         .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
-          background-color: $sidebar-dark-bg;
+          background-color: #6e55ff;
         }
 
         .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
-          background-color: $sidebar-light-bg;
+          background-color: #6e55ff;
         }
       }
     }
@@ -675,11 +675,11 @@ body:not(.layout-fixed) {
         .layout#{$infix}-navbar-fixed & {
           @each $name, $color in $theme-colors-alt {
             .sidebar-dark-#{$name} .brand-link:not([class*="navbar"]) {
-              background-color: $sidebar-dark-bg;
+              background-color: #6e55ff;
             }
 
             .sidebar-light-#{$name} .brand-link:not([class*="navbar"]) {
-              background-color: $sidebar-light-bg;
+              background-color: #6e55ff;
             }
           }
         }

@@ -8,15 +8,15 @@ import { Stock } from 'src/app/Models/Stock';
     providedIn: 'root',
 })
 export class StockService {
-    baseurl = environment.production;
+    baseurl = environment.url;
     constructor(private http: HttpClient) { }
 
     fetchStocks(): Observable<Stock[]> {
-        return this.http.get<Stock[]>("http://localhost:8098/SpringMVC/servlet/retrieveActiveStocks");
+        return this.http.get<Stock[]>(this.baseurl + 'retrieveActiveStocks');
     }
 
     fetchPassiveStocks(): Observable<Stock[]> {
-        return this.http.get<Stock[]>("http://localhost:8098/SpringMVC/servlet/retrievePassiveStocks");
+        return this.http.get<Stock[]>(this.baseurl + 'retrievePassiveStocks');
     }
 
     fetchStocksById(id: any): Observable<Stock> {
@@ -24,13 +24,21 @@ export class StockService {
     }
 
     addStock(data: Stock) {
-        return this.http.post(this.baseurl + 'Stock', data);
+        return this.http.post(this.baseurl + 'addStock', data);
     }
 
     deleteStock(id: any) {
         console.log(id);
         return this.http.delete(this.baseurl + 'Stock/' + id);
     }
+
+    RemoveStock(data: Stock): Observable<Stock> {
+        return this.http.put<Stock>(
+            this.baseurl + 'RemoveStock/' + data.idStock,
+            data
+        );
+    }
+
     UpdatStock(data: Stock): Observable<Stock> {
         return this.http.put<Stock>(
             this.baseurl + 'Stock/' + data.idStock,

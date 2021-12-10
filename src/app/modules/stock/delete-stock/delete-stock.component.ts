@@ -9,21 +9,20 @@ import { ShowStockComponent } from '../show-stock/show-stock.component';
   styleUrls: ['./delete-stock.component.css']
 })
 export class DeleteStockComponent implements OnChanges {
-  @Input() stocks!: Stock; //composant fils peut recevoir des informations depuis son composant parent
+  @Input() stocks!: Stock;
   @Output() notif = new EventEmitter<Stock>();
   @ViewChild(ShowStockComponent) c!: ShowStockComponent;
   constructor(private service: StockService) { }
 
 
   //ngOnInit(): void {}
-  Delete(id: number) {
+  Remove(id: number) {
     console.log('id : ' + id);
-    this.service.deleteStock(id);
+    // this.service.RemoveStock(id,);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
     throw new Error('Method not implemented for delete.');
   }
-
 }
