@@ -11,6 +11,7 @@ import { StockModule } from './modules/stock/stock.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

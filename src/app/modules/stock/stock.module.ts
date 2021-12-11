@@ -11,12 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatDialogModule } from '@angular/material/dialog';
 
+
 @NgModule({
   declarations: [
     AddStockComponent,
     EditStockComponent,
     DeleteStockComponent,
-    ShowStockComponent
+    ShowStockComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ]
 })
 export class StockModule { }

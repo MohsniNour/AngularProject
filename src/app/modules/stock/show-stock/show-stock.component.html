@@ -7,7 +7,7 @@
     </div>
     <div class="overflow-scroll">
         <div class="modal-body col-12">
-            <div class="row">
+            <div class="row ml-5">
                 <div *ngFor="let item of ListStockPassive; let i = index"
                     class="col-3 mt-3 ml-5 mr-1 border about-section-card">
                     <img src="../../../../assets/img/1.jpg" alt="" class="img-fluid">
@@ -70,6 +70,15 @@
                 <b class="size">{{ item.libelleStock }}</b>
                 <p class="mt-2 "><b>Quantité : </b>{{ item.qteStock }}</p>
                 <p><b>Quantité minimale :</b> {{ item.qteMin }}</p>
+                <img src="../../../../assets/img/etoile.png" class="img" />
+                <!--<div *ngIf="item.rating===0" style="width: 60px;">
+                    <img src=" ../../../../assets/img/star_favorite_14013.png" class="col-2 img" />
+                    <img src="https://img.icons8.com/color/96/000000/star--v1.png" class="col-2" />
+                    <img src="https://img.icons8.com/color/96/000000/star--v1.png" class="col-2" />
+                    <img src="https://img.icons8.com/color/96/000000/star--v1.png" class="col-2" />
+                    <img src="https://img.icons8.com/color/96/000000/star--v1.png" class="col-2" />
+                </div>
+            -->
                 <div *ngIf="item.qteStock < item.qteMin">
                     <div class="row mt-1 col-12">
                         <a [routerLink]="['/DetailStock']"
@@ -99,5 +108,5 @@
             </div>
         </div>
     </div>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <pagination-controls (pageChange)="p = $event" class="mt-5"></pagination-controls>
 </div>

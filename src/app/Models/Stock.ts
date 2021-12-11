@@ -3,7 +3,8 @@ export class Stock {
     libelleStock!: String;
     qteMin!: number;
     qteStock!: number;
-    createdDate!:Date;
-    updatedDate!:Date;
-    state!:number;
+    createdDate!: Date;
+    updatedDate!: Date;
+    state!: number;
+    rating!: number;
 }
