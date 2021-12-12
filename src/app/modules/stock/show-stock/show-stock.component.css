@@ -14,8 +14,13 @@ body::before {
     justify-content: center !important;
     margin-top: 3px !important;
   }
+  .rate{
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap;
+  }
   .img {
-    width: 50px !important;
+    width: 40px !important;
     height: auto !important;
   }
   .btn-title{

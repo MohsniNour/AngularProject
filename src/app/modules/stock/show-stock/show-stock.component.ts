@@ -15,6 +15,7 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
   @ViewChild(AddStockComponent) c!: AddStockComponent;
 
   p: number = 1;
+
   constructor(private service: StockService, private router: Router, private dialog: MatDialog,
     private modalService: NgbModal) {
 
@@ -27,6 +28,11 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
   ListStock!: Stock[];
   ListStockPassive!: Stock[];
   test!: Stock;
+  Rate1 = new Array(1);
+  Rate2 = new Array(2);
+  Rate3 = new Array(3);
+  Rate4 = new Array(4);
+  Rate5 = new Array(5);
 
 
   ngOnInit(): void {

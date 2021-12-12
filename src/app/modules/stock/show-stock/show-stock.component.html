@@ -30,28 +30,33 @@
 <div class="container my-2">
     <div class="row">
         <h2 class="mt-3 title ">Liste des stocks disponibles</h2>
-        <div class="offset-7">
+        <div class="offset-4">
             <a [routerLink]="['/AddStock']" class="ml-2">
                 <button class="btn btn-outline-success btnAjout fa fa-plus-square" (click)="addStock()">
+                    Ajouter
                 </button>
             </a>
-            <a [routerLink]="['/AddStock']" class="ml-2">
-                <button class="btn btn-outline-dark fa fa-sort-numeric-down" (click)="addStock()">
-                </button>
-            </a>
-            <a [routerLink]="" class="ml-2">
-                <button class="btn btn-outline-dark fa fa-sort-alpha-down" (click)="addStock()">
+            <a class="ml-2">
+                <button class="btn btn-outline-danger fa" (click)="DeletedStock();open(content)">
+                    Liste des stocks supprimes
                 </button>
             </a>
         </div>
-        <a [routerLink]="" class="offset-8">
-            <button class="btn btn-outline-danger fa" (click)="DeletedStock();open(content)">
-                Liste des stocks supprimes
-            </button>
-        </a>
     </div>
 </div>
 <div class="container my-3" id="about">
+    <div class="row offset-8 mb-2">
+        <a [routerLink]="['/AddStock']" class="ml-2">
+            <button class="btn btn-outline-dark fa" (click)="addStock()">
+                ordre de A a Z
+            </button>
+        </a>
+        <a [routerLink]="" class="ml-2">
+            <button class="btn btn-outline-dark fa" (click)="addStock()">
+                ordre de 1 a 9
+            </button>
+        </a>
+    </div>
     <div class="row offset-4">
         <div class="input-group col-12">
             <div class="form-outline col-10">
@@ -63,34 +68,67 @@
         </div>
     </div>
     <div class="overflow-scroll">
-        <div class="row">
+        <div class="row mx-2 ">
             <div *ngFor="let item of ListStock| paginate: {itemsPerPage:3,currentPage:p} let i = index;"
                 class="col-3 mt-3 ml-5 border about-section-card">
-                <img src="../../../../assets/img/1.jpg" alt="" class="img-fluid">
+                <img src="../../../../assets/img/1.jpg" alt="" class="img-fluid mt-2">
                 <b class="size">{{ item.libelleStock }}</b>
                 <p class="mt-2 "><b>Quantité : </b>{{ item.qteStock }}</p>
                 <p><b>Quantité minimale :</b> {{ item.qteMin }}</p>
-                <img src="../../../../assets/img/etoile.png" class="img" />
-                <!--<div *ngIf="item.rating===0" style="width: 60px;">
-                    <img src=" ../../../../assets/img/star_favorite_14013.png" class="col-2 img" />
-                    <img src="https://img.icons8.com/color/96/000000/star--v1.png" class="col-2" />
-                    <img src="https://img.icons8.com/color/96/000000/star--v1.png" class="col-2" />
-                    <img src="https://img.icons8.com/color/96/000000/star--v1.png" class="col-2" />
-                    <img src="https://img.icons8.com/color/96/000000/star--v1.png" class="col-2" />
-                </div>
+                <!--<img src="../../../../assets/img/etoile.png" class="img" />-->
+                <!--<ngb-rating [max]="5" [(rate)]="currentRate">
+                </ngb-rating>
+                <p>Rate: <b>{{currentRate}}</b></p>
             -->
-                <div *ngIf="item.qteStock < item.qteMin">
-                    <div class="row mt-1 col-12">
-                        <a [routerLink]="['/DetailStock']"
-                            class="btn btn-outline-info fa btn-title btn-md ml-4 col-5">Details</a>
-                        <a [routerLink]="['/DetailStock']"
-                            class="btn btn-outline-dark fa btn-title btn-ms ml-2 col-5">Commander</a>
+                <div *ngIf="item.rating===0" class="my-2 d-flex flex-wrap">
+                    <div *ngFor="let index of Rate5" class="ml-1">
+                        <img src="../../../../assets/img/etoilevide.png" class="img" />
                     </div>
-                    <div class="row mt-1 col-12">
+                </div>
+                <div *ngIf="item.rating===1" class="my-2 d-flex flex-wrap">
+                    <img src="../../../../assets/img/etoile.png" class="img ml-1" />
+                    <div *ngFor="let index of Rate4" class="ml-3">
+                        <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
+                    </div>
+                </div>
+                <div *ngIf="item.rating===2" class="my-2 d-flex flex-wrap">
+                    <div *ngFor="let index of Rate2" class="ml-3">
+                        <img src="../../../../assets/img/etoile.png" class="img ml-1" />
+                    </div>
+                    <div *ngFor="let index of Rate3" class="ml-3 d-flex flex-wrap"></div>
+                    <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
+                </div>
+                <div *ngIf="item.rating===3" class="my-2">
+                    <div *ngFor="let index of Rate3" class="ml-3 d-flex flex-wrap">
+                        <img src="../../../../assets/img/etoile.png" class="img ml-1" />
+                    </div>
+                    <div *ngFor="let index of Rate2" class="ml-3 d-flex flex-wrap"></div>
+                    <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
+                </div>
+                <div *ngIf="item.rating===4" class="my-2">
+                    <div *ngFor="let index of Rate4" class="ml-3 d-flex flex-wrap">
+                        <img src="../../../../assets/img/etoile.png" class="img ml-1" />
+                    </div>
+                    <div *ngFor="let index of Rate1" class="ml-3 d-flex flex-wrap"></div>
+                    <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
+                </div>
+                <div *ngIf="item.rating===5" class="my-2 d-flex flex-wrap">
+                    <div *ngFor="let index of Rate5" class="ml-1">
+                        <img src="../../../../assets/img/etoile.png" class="img ml-1" />
+                    </div>
+                </div>
+                <div *ngIf="item.qteStock < item.qteMin">
+                    <div class="row mt-1 ml-2 d-flex flex-wrap">
+                        <a [routerLink]="['/DetailStock']"
+                            class="btn btn-outline-info fa btn-title btn-md ml-4 ">Details</a>
+                        <a [routerLink]="['/DetailStock']"
+                            class="btn btn-outline-dark fa btn-title btn-ms ml-2">Commander</a>
+                    </div>
+                    <div class="row mt-1  ml-2 d-flex flex-wrap">
                         <a [routerLink]="['/EditStock']"
-                            class="btn btn-outline-warning fa btn-title btn-ms ml-4 col-5">Modifier</a>
+                            class="btn btn-outline-warning fa btn-title btn-ms ml-4">Modifier</a>
                         <a [routerLink]="['/DeleteStock']"
-                            class="btn btn-outline-danger fa  btn-title btn-ms ml-2 col-5">Supprimer</a>
+                            class="btn btn-outline-danger fa  btn-title btn-ms ml-2">Supprimer</a>
                     </div>
                 </div>
                 <div *ngIf="item.qteStock > item.qteMin">
@@ -98,11 +136,11 @@
                         <a [routerLink]="['/DetailStock']"
                             class="btn btn-outline-info fa btn-title btn-ms col-10 ml-4">Details</a>
                     </div>
-                    <div class="row mt-1 col-12">
+                    <div class="row mt-1 mb-2 col-12">
                         <a [routerLink]="['/EditStock']"
-                            class="btn btn-outline-warning fa btn-title btn-ms col-4 ml-4">Modifier</a>
+                            class="btn btn-outline-warning fa btn-title btn-ms col-5 ml-4">Modifier</a>
                         <a [routerLink]="['/DeleteStock']"
-                            class="btn btn-outline-danger fa btn-title  btn-ms col-5 ml-3">Supprimer</a>
+                            class="btn btn-outline-danger fa btn-title  btn-ms col-5 ml-1">Supprimer</a>
                     </div>
                 </div>
             </div>
