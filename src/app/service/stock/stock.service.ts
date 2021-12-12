@@ -1,8 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Stock } from 'src/app/Models/Stock';
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
     providedIn: 'root',
@@ -20,7 +23,7 @@ export class StockService {
     }
 
     fetchStocksById(id: any): Observable<Stock> {
-        return this.http.get<Stock>(this.baseurl + 'Stock/' + id);
+        return this.http.get<Stock>(this.baseurl + 'getStock/' + id);
     }
 
     addStock(data: Stock) {
@@ -39,10 +42,11 @@ export class StockService {
         );
     }
 
-    UpdatStock(data: Stock): Observable<Stock> {
+    UpdateStock(data: Stock): Observable<Stock> {
+        console.log(data.idStock);
         return this.http.put<Stock>(
-            this.baseurl + 'Stock/' + data.idStock,
-            data
+            this.baseurl + 'updateStock/' + data.idStock,
+            data, httpOptions
         );
     }
 }

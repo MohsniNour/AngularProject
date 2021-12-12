@@ -10,22 +10,24 @@ import { ShowStockComponent } from '../show-stock/show-stock.component';
   styleUrls: ['./edit-stock.component.css']
 })
 export class EditStockComponent implements OnInit {
-  @Input() stocks!: Stock; //composant fils peut recevoir des informations depuis son composant parent
+  @Input() stocks!: Number;
   @Output() notif = new EventEmitter<Stock>();
   @ViewChild(ShowStockComponent) c!: ShowStockComponent;
+  @Output() addEvent = new EventEmitter<Stock>();
 
   constructor(private ac: ActivatedRoute,
     private service: StockService,
     private router: Router) { }
 
   stock = new Stock();
-  id = this.ac.snapshot.params.id;
+  id: number = this.ac.snapshot.params.id;
+
   ngOnInit(): void {
     this.getStock();
   }
 
   getStock() {
-    this.service.fetchStocksById(this.id).subscribe(
+    this.service.fetchStocksById(this.stocks).subscribe(
       (res: Stock) => {
         this.stock = res;
         console.log(res.idStock);
@@ -37,20 +39,25 @@ export class EditStockComponent implements OnInit {
   }
 
   UpdateStock(data: Stock) {
-    data.idStock = this.id;
-    this.service.UpdatStock(data).subscribe(
-      () => { },
+    data = this.stock;
+    console.log(data.idStock);
+    this.service.UpdateStock(data).subscribe(
+      (next) => { this.reloadPage(); },
       (error) => {
         console.log(error);
       }
     );
-    this.router.navigateByUrl('stock');
   }
-
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
     throw new Error('Method not implemented for update.');
+  }
+
+  reloadPage() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false; this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
   }
 
 }

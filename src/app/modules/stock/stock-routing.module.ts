@@ -4,7 +4,8 @@ import { AddStockComponent } from './add-stock/add-stock.component';
 import { ShowStockComponent } from './show-stock/show-stock.component';
 import { EditStockComponent } from './edit-stock/edit-stock.component';
 import { DeleteStockComponent } from './delete-stock/delete-stock.component';
-import { DetailStockComponent } from './detail-stock/detail-stock.component'
+import { DetailStockComponent } from './detail-stock/detail-stock.component';
+import { StarComponentComponent } from './star-component/star-component.component';
 
 const routes: Routes = [
   { path: 'ShowActiveStocks', component: ShowStockComponent },
@@ -12,7 +13,10 @@ const routes: Routes = [
   { path: 'AddStock', component: AddStockComponent },
   { path: 'EditStock', component: EditStockComponent },
   { path: 'DeleteStock', component: DeleteStockComponent },
-  { path: 'DetailStock', component: DetailStockComponent }
+  { path: 'DetailStock', component: DetailStockComponent },
+  { path: 'StarStock', component: StarComponentComponent }
+
+
 ];
 
 @NgModule({

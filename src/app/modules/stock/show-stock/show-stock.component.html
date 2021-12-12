@@ -1,3 +1,22 @@
+<ng-template #detailsContent let-modal>
+    <div class="modal-header">
+        <h2 class="modal-title" id="modal-basic-title"><b>Details d'un stock</b></h2>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <app-detail-stock></app-detail-stock>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+<!--/////////////////////////////////////////////////////////////////////////-->
+
+<!--/////////////////////////////////////////////////////////////////////////-->
 <ng-template #content let-modal>
     <div class="modal-header ">
         <h4 class="modal-title" id="modal-basic-title">Liste des stocks supprimés</h4>
@@ -31,13 +50,13 @@
     <div class="row">
         <h2 class="mt-3 title ">Liste des stocks disponibles</h2>
         <div class="offset-4">
-            <a [routerLink]="['/AddStock']" class="ml-2">
-                <button class="btn btn-outline-success btnAjout fa fa-plus-square" (click)="addStock()">
+            <a [routerLink]="['/AddStock']" class="ml-2 ">
+                <button class="btn btn-outline-success btnAjout fa fa-plus-square huver">
                     Ajouter
                 </button>
             </a>
             <a class="ml-2">
-                <button class="btn btn-outline-danger fa" (click)="DeletedStock();open(content)">
+                <button class="btn btn-outline-danger fa huver" (click)="DeletedStock();open(content)">
                     Liste des stocks supprimes
                 </button>
             </a>
@@ -45,22 +64,22 @@
     </div>
 </div>
 <div class="container my-3" id="about">
-    <div class="row offset-8 mb-2">
+    <div class="row offset-10 mb-2">
         <a [routerLink]="['/AddStock']" class="ml-2">
-            <button class="btn btn-outline-dark fa" (click)="addStock()">
-                ordre de A a Z
+            <button class="btn btn-outline-dark fa huver" (click)="addStock()">
+                <img src="../../../../assets/img/sort-by-alphabet_icon-icons.com_73407.png" alt="">
             </button>
         </a>
         <a [routerLink]="" class="ml-2">
-            <button class="btn btn-outline-dark fa" (click)="addStock()">
-                ordre de 1 a 9
+            <button class="btn btn-outline-dark fa huver" (click)="addStock()">
+                <img src="../../../../assets/img/sort-by-order_icon-icons.com_73403.png" alt="">
             </button>
         </a>
     </div>
-    <div class="row offset-4">
+    <div class="row offset-5">
         <div class="input-group col-12">
             <div class="form-outline col-10">
-                <input type="search" placeholder="Recherche.." id="form1" class="form-control " />
+                <input type="text" placeholder="Recherche.." id="form1" class="form-control " />
             </div>
             <button type="button" class="btn btn-outline-dark col-1">
                 <i class="fas fa-search"></i>
@@ -68,9 +87,22 @@
         </div>
     </div>
     <div class="overflow-scroll">
-        <div class="row mx-2 ">
+        <div class="row mx-2 my-4 ">
             <div *ngFor="let item of ListStock| paginate: {itemsPerPage:3,currentPage:p} let i = index;"
-                class="col-3 mt-3 ml-5 border about-section-card">
+                class="col-3 mt-3 ml-5 border about-section-card huver">
+                <ng-template #updateContent let-modal>
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="modal-basic-title"><b>Modifier un stock</b></h2>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <app-edit-stock [stocks]="item.idStock"></app-edit-stock>
+                        </form>
+                    </div>
+                </ng-template>
                 <img src="../../../../assets/img/1.jpg" alt="" class="img-fluid mt-2">
                 <b class="size">{{ item.libelleStock }}</b>
                 <p class="mt-2 "><b>Quantité : </b>{{ item.qteStock }}</p>
@@ -87,15 +119,15 @@
                 </div>
                 <div *ngIf="item.rating===1" class="my-2 d-flex flex-wrap">
                     <img src="../../../../assets/img/etoile.png" class="img ml-1" />
-                    <div *ngFor="let index of Rate4" class="ml-3">
+                    <div *ngFor="let index of Rate4" class="">
                         <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
                     </div>
                 </div>
                 <div *ngIf="item.rating===2" class="my-2 d-flex flex-wrap">
-                    <div *ngFor="let index of Rate2" class="ml-3">
+                    <div *ngFor="let index of Rate2" class="">
                         <img src="../../../../assets/img/etoile.png" class="img ml-1" />
                     </div>
-                    <div *ngFor="let index of Rate3" class="ml-3 d-flex flex-wrap"></div>
+                    <div *ngFor="let index of Rate3" class=""></div>
                     <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
                 </div>
                 <div *ngIf="item.rating===3" class="my-2">
@@ -119,26 +151,32 @@
                 </div>
                 <div *ngIf="item.qteStock < item.qteMin">
                     <div class="row mt-1 ml-2 d-flex flex-wrap">
-                        <a [routerLink]="['/DetailStock']"
-                            class="btn btn-outline-info fa btn-title btn-md ml-4 ">Details</a>
+                        <a class="btn btn-outline-info fa btn-title btn-ms ml-4 "
+                            (click)="openupdate(detailsContent)">Details</a>
                         <a [routerLink]="['/DetailStock']"
                             class="btn btn-outline-dark fa btn-title btn-ms ml-2">Commander</a>
                     </div>
-                    <div class="row mt-1  ml-2 d-flex flex-wrap">
-                        <a [routerLink]="['/EditStock']"
-                            class="btn btn-outline-warning fa btn-title btn-ms ml-4">Modifier</a>
-                        <a [routerLink]="['/DeleteStock']"
-                            class="btn btn-outline-danger fa  btn-title btn-ms ml-2">Supprimer</a>
+                    <div class="row mt-1 ml-2 d-flex flex-wrap">
+                        <button class="btn btn-outline-warning fa btn-title btn-ms ml-4"
+                            (click)="openupdate(updateContent)">Modifier</button>
+                        <button [routerLink]="['/DeleteStock']"
+                            class="btn btn-outline-danger fa  btn-title btn-ms ml-2">Supprimer</button>
+                    </div>
+                    <div class="row mt-1 ml-2 d-flex flex-wrap col-12">
+                        <button class="btn btn-outline-success fa btn-title btn-ms col-10 ml-2 mb-2"
+                            (click)="openupdate(updateContent)">Evaluer</button>
                     </div>
                 </div>
                 <div *ngIf="item.qteStock > item.qteMin">
-                    <div class="row mt-1 col-12">
-                        <a [routerLink]="['/DetailStock']"
-                            class="btn btn-outline-info fa btn-title btn-ms col-10 ml-4">Details</a>
+                    <div class="row mt-1 ml-2 d-flex flex-wrap">
+                        <a class="btn btn-outline-info fa btn-title btn-ms ml-3"
+                            (click)="openupdate(detailsContent)">Details</a>
+                        <button class="btn btn-outline-success fa btn-title btn-ms ml-4"
+                            (click)="openupdate(updateContent)">Evaluer</button>
                     </div>
                     <div class="row mt-1 mb-2 col-12">
-                        <a [routerLink]="['/EditStock']"
-                            class="btn btn-outline-warning fa btn-title btn-ms col-5 ml-4">Modifier</a>
+                        <a class="btn btn-outline-warning fa btn-title btn-ms col-5 ml-4"
+                            (click)="openupdate(updateContent)">Modifier</a>
                         <a [routerLink]="['/DeleteStock']"
                             class="btn btn-outline-danger fa btn-title  btn-ms col-5 ml-1">Supprimer</a>
                     </div>

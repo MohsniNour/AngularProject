@@ -87,7 +87,7 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
   }
 
   UpdateStock(id: number) {
-    //this.router.navigate(['stock/updateStock', id]);
+    this.router.navigate(['updateStock/', id]);
   }
 
   addStock() {
@@ -107,6 +107,13 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
 
   open(content: any) {
     this.modalService.open(content, { size: 'xl' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  openupdate(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
