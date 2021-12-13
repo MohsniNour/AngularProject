@@ -13,6 +13,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ShowStockComponent implements OnInit, AfterViewInit {
   @Input() search!: String;
+  @Input() idStock!: Number;
   @ViewChild(AddStockComponent) c!: AddStockComponent;
 
   p: number = 1;
@@ -108,17 +109,43 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
       );
     }
   }
-
+  stock = new Stock();
   Delete(id: number) {
-    this.service.deleteStock(id).subscribe(
-      () => { },
+    this.service.fetchStocksById(id).subscribe(
+      (t) => {
+        console.log(t);
+        this.stock = t;
+        console.log('le stock est :');
+        console.log(this.stock);
+        this.service.RemoveStock(this.stock).subscribe(
+          () => {
+            console.log('test');
+            console.log(id);
+            console.log(this.stock);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      },
       (error) => {
         console.log(error);
       }
     );
+
     console.log('----------------------------');
+    console.log(this.stock.idStock);
     this.ListStock.splice(this.ListStock.length)
-    this.GetAllStock();
+    //this.GetAllStock();
+    this.service.fetchStocks().subscribe(
+      (t) => {
+        this.ListStock = t;
+      },
+      (error) => {
+        console.log(error);
+        console.log("test");
+      }
+    );
   }
 
   UpdateStock(id: number) {
