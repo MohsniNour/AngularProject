@@ -16,7 +16,7 @@
                     <p><b>Quantité : </b>{{ item.qteStock }}</p>
                     <p><b>Quantité minimale :</b> {{ item.qteMin }}</p>
                     <div class="row mt-1 col-12">
-                        <a [routerLink]="['/DetailStock']"
+                        <a (click)="Activate(item.idStock)"
                             class="btn btn-outline-success fa btn-title btn-md ml-4 col-10 mb-2">Activer</a>
                     </div>
                 </div>
@@ -25,7 +25,8 @@
         <pagination-controls (pageChange)="p = $event" class="mt-5"></pagination-controls>
     </div>
     <div class="modal-footer col-12">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Fermer</button>
+        <button type="button" class="btn btn-outline-dark"
+            (click)="modal.close('Save click');ActivateStock()">Fermer</button>
     </div>
 </ng-template>
 <!--body-->

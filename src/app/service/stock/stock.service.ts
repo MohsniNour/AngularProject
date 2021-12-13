@@ -41,7 +41,14 @@ export class StockService {
     RemoveStock(data: Stock): Observable<Stock> {
         return this.http.put<Stock>(
             this.baseurl + 'removeStock/' + data.idStock,
-            data
+            data, httpOptions
+        );
+    }
+
+    ActivateStock(data: Stock): Observable<Stock> {
+        return this.http.put<Stock>(
+            this.baseurl + 'activeStock/' + data.idStock,
+            data, httpOptions
         );
     }
 

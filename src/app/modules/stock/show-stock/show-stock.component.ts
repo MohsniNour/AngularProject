@@ -14,6 +14,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class ShowStockComponent implements OnInit, AfterViewInit {
   @Input() search!: String;
   @Input() idStock!: Number;
+  @Input() idStockActivate!: Number;
   @ViewChild(AddStockComponent) c!: AddStockComponent;
 
   p: number = 1;
@@ -40,6 +41,10 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.GetAllStock();
+    this.ActivateStock();
+
+  }
+  ActivateStock() {
     this.service.fetchStocks().subscribe(
       (t) => {
         console.log('test');
@@ -52,6 +57,7 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
         console.log("test");
       }
     );
+
 
   }
   DeletedStock() {
@@ -109,6 +115,34 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
       );
     }
   }
+
+  stockActivate = new Stock();
+  Activate(id: number) {
+    this.service.fetchStocksById(id).subscribe(
+      (t) => {
+        console.log(t);
+        this.stockActivate = t;
+        console.log('le stock est :');
+        console.log(this.stockActivate);
+        this.service.ActivateStock(this.stockActivate).subscribe(
+          () => {
+            console.log('test');
+            console.log(id);
+            console.log(this.stock);
+            this.DeletedStock();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+  }
+
   stock = new Stock();
   Delete(id: number) {
     this.service.fetchStocksById(id).subscribe(
@@ -122,6 +156,7 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
             console.log('test');
             console.log(id);
             console.log(this.stock);
+            this.ActivateStock();
           },
           (error) => {
             console.log(error);
@@ -130,20 +165,6 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
       },
       (error) => {
         console.log(error);
-      }
-    );
-
-    console.log('----------------------------');
-    console.log(this.stock.idStock);
-    this.ListStock.splice(this.ListStock.length)
-    //this.GetAllStock();
-    this.service.fetchStocks().subscribe(
-      (t) => {
-        this.ListStock = t;
-      },
-      (error) => {
-        console.log(error);
-        console.log("test");
       }
     );
   }
