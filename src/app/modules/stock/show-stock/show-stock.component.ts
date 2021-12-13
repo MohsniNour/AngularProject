@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Stock } from 'src/app/Models/Stock';
 import { StockService } from 'src/app/service/stock/stock.service';
@@ -12,6 +12,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./show-stock.component.css']
 })
 export class ShowStockComponent implements OnInit, AfterViewInit {
+  @Input() search!: String;
   @ViewChild(AddStockComponent) c!: AddStockComponent;
 
   p: number = 1;
@@ -27,6 +28,7 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
   }
   ListStock!: Stock[];
   ListStockPassive!: Stock[];
+  SearchListStock: any;
   test!: Stock;
   Rate1 = new Array(1);
   Rate2 = new Array(2);
@@ -72,6 +74,39 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
   GetPassiveStock() {
     console.log('getPassiveStocks');
 
+  }
+
+  GetListSearch() {
+    if (this.search === "") {
+      this.service.fetchStocks().subscribe(
+        (t) => {
+          console.log('test');
+          console.log(t);
+
+          this.ListStock = t;
+        },
+        (error) => {
+          console.log(error);
+          console.log("test");
+        }
+      );
+    }
+    else {
+      this.service.searchStocks(this.search).subscribe(
+        (t) => {
+          console.log('test');
+          console.log(this.search);
+          console.log(t);
+
+          this.SearchListStock = t;
+          this.ListStock = t;
+        },
+        (error) => {
+          console.log(error);
+          console.log("test");
+        }
+      );
+    }
   }
 
   Delete(id: number) {

@@ -26,6 +26,9 @@ export class StockService {
         return this.http.get<Stock>(this.baseurl + 'getStock/' + id);
     }
 
+    searchStocks(search: any): Observable<Stock[]> {
+        return this.http.get<Stock[]>(this.baseurl + 'searchStock/' + search);
+    }
     addStock(data: Stock) {
         return this.http.post(this.baseurl + 'addStock', data);
     }
