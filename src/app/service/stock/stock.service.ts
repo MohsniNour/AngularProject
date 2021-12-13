@@ -22,6 +22,10 @@ export class StockService {
         return this.http.get<Stock[]>(this.baseurl + 'retrievePassiveStocks');
     }
 
+    orderStocksByQte(): Observable<Stock[]> {
+        return this.http.get<Stock[]>(this.baseurl + 'orderStocksByQte');
+    }
+
     fetchStocksById(id: any): Observable<Stock> {
         return this.http.get<Stock>(this.baseurl + 'getStock/' + id);
     }

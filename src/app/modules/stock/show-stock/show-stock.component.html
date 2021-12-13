@@ -48,15 +48,20 @@
     </div>
 </div>
 <div class="container my-3" id="about">
-    <div class="row offset-10 mb-2">
+    <div class="row offset-9 mb-2">
         <a [routerLink]="['/AddStock']" class="ml-2">
-            <button class="btn btn-outline-dark fa huver" (click)="addStock()">
+            <button class="btn btn-outline-dark fa huver" (click)="OrderStocksByQte()">
                 <img src="../../../../assets/img/sort-by-alphabet_icon-icons.com_73407.png" alt="">
             </button>
         </a>
         <a [routerLink]="" class="ml-2">
-            <button class="btn btn-outline-dark fa huver" (click)="addStock()">
+            <button class="btn btn-outline-dark fa huver" (click)="OrderStocksByQte()">
                 <img src="../../../../assets/img/sort-by-order_icon-icons.com_73403.png" alt="">
+            </button>
+        </a>
+        <a [routerLink]="" class="ml-4">
+            <button class="btn btn-outline-dark fa huver" (click)="ActivateStock()">
+                <img src="../../../../assets/img/refresh-page-arrow-button_icon-icons.com_53909.png" alt="">
             </button>
         </a>
     </div>
