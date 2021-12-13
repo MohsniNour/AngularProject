@@ -1,21 +1,3 @@
-<ng-template #detailsContent let-modal>
-    <div class="modal-header">
-        <h2 class="modal-title" id="modal-basic-title"><b>Details d'un stock</b></h2>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form>
-            <app-detail-stock></app-detail-stock>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-    </div>
-</ng-template>
-<!--/////////////////////////////////////////////////////////////////////////-->
-
 <!--/////////////////////////////////////////////////////////////////////////-->
 <ng-template #content let-modal>
     <div class="modal-header ">
@@ -29,7 +11,7 @@
             <div class="row ml-5">
                 <div *ngFor="let item of ListStockPassive; let i = index"
                     class="col-3 mt-3 ml-5 mr-1 border about-section-card">
-                    <img src="../../../../assets/img/1.jpg" alt="" class="img-fluid">
+                    <img src={{item.urlImage}} alt="" class="img-fluid my-3">
                     <b class="">{{ item.libelleStock }}</b>
                     <p><b>Quantité : </b>{{ item.qteStock }}</p>
                     <p><b>Quantité minimale :</b> {{ item.qteMin }}</p>
@@ -103,7 +85,24 @@
                         </form>
                     </div>
                 </ng-template>
-                <img src="../../../../assets/img/1.jpg" alt="" class="img-fluid mt-2">
+                <ng-template #detailsContent let-modal>
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="modal-basic-title"><b>Details d'un stock</b></h2>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <app-detail-stock [stocks]="item.idStock"></app-detail-stock>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Fermer</button>
+                    </div>
+                </ng-template>
+                <img src={{item.urlImage}} alt="" class="img-fluid mt-2">
                 <b class="size">{{ item.libelleStock }}</b>
                 <p class="mt-2 "><b>Quantité : </b>{{ item.qteStock }}</p>
                 <p><b>Quantité minimale :</b> {{ item.qteMin }}</p>

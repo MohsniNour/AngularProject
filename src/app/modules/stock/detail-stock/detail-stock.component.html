@@ -1,9 +1,25 @@
 <div class="container my-3" id="about">
     <div class="row mx-2 ">
-        <img src="../../../../assets/img/1.jpg" alt="" class="img-fluid mt-2">
-        <!--<b class="size">{{ item.libelleStock }}</b>
-        <p class="mt-2 "><b>Quantité : </b>{{ item.qteStock }}</p>
-        <p><b>Quantité minimale :</b> {{ item.qteMin }}</p>
-        -->
+        <h1 class="size mt-2 align-content:center;"><b>{{ stock.libelleStock }}</b></h1>
+        <div class="mt-3 ml-2 about-section-card">
+            <img src={{stock.urlImage}} alt="" class="img-fluid mt-2">
+            <p class="mt-2 "><b>Quantité : </b>{{ stock.qteStock }}</p>
+            <p><b>Quantité minimale :</b> {{ stock.qteMin }}</p>
+            <p><b>Liste des produits :</b></p>
+            <table class="table table-striped">
+                <thead class="thead-success">
+                    <tr>
+                        <th>Code</th>
+                        <th>Libelle</th>
+                        <th>Prix Unitaire</th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let item of prts; let i = index">
+                    <td>{{ item.code }}</td>
+                    <td>{{ item.libelle}}</td>
+                    <td>{{ item.prixUnitaire }}</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>

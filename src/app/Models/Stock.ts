@@ -1,3 +1,4 @@
+import { Produit } from './Produit'
 export class Stock {
     idStock!: number;
     libelleStock!: String;
@@ -5,6 +6,8 @@ export class Stock {
     qteStock!: number;
     createdDate!: Date;
     updatedDate!: Date;
+    produits!: Produit[];
     state!: number;
     rating!: number;
+    urlImage!: String;
 }
