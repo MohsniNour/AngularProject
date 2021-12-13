@@ -75,6 +75,22 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
 
   }
 
+  OrderStocksByLibelle() {
+    this.service.orderStocksByLibelle().subscribe(
+      (t) => {
+        console.log('test');
+        console.log(t);
+
+        this.ListStock = t;
+      },
+      (error) => {
+        console.log(error);
+        console.log("test");
+      }
+    );
+
+  }
+
   DeletedStock() {
     this.service.fetchPassiveStocks().subscribe(
       (t) => {

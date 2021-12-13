@@ -26,6 +26,10 @@ export class StockService {
         return this.http.get<Stock[]>(this.baseurl + 'orderStocksByQte');
     }
 
+    orderStocksByLibelle(): Observable<Stock[]> {
+        return this.http.get<Stock[]>(this.baseurl + 'orderStocksByLibelle');
+    }
+
     fetchStocksById(id: any): Observable<Stock> {
         return this.http.get<Stock>(this.baseurl + 'getStock/' + id);
     }
