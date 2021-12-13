@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-star-component',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StarComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
-  currentRate: number = 6;
+  currentRate: number = 3;
   ngOnInit(): void {
   }
 

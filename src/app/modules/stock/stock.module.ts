@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    NgbModule
   ]
 })
 export class StockModule { }

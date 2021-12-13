@@ -1,7 +1,7 @@
 <!--/////////////////////////////////////////////////////////////////////////-->
 <ng-template #content let-modal>
     <div class="modal-header ">
-        <h4 class="modal-title" id="modal-basic-title">Liste des stocks supprimés</h4>
+        <h2 class="modal-title" id="modal-basic-title"><b>Liste des stocks supprimés</b></h2>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -113,6 +113,19 @@
                             (click)="modal.close('Save click')">Fermer</button>
                     </div>
                 </ng-template>
+                <ng-template #rateContent let-modal>
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="modal-basic-title"><b>Evaluer un stock</b></h2>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <app-edit-stock [stocks]="item.idStock"></app-edit-stock>
+                        </form>
+                    </div>
+                </ng-template>
                 <img src={{item.urlImage}} alt="" class="img-fluid mt-2">
                 <b class="size">{{ item.libelleStock }}</b>
                 <p class="mt-2 "><b>Quantité : </b>{{ item.qteStock }}</p>
@@ -182,7 +195,7 @@
                         <a class="btn btn-outline-info fa btn-title btn-ms ml-3"
                             (click)="openupdate(detailsContent)">Details</a>
                         <button class="btn btn-outline-success fa btn-title btn-ms ml-4"
-                            (click)="openupdate(updateContent)">Evaluer</button>
+                            (click)="openupdate(rateContent)">Evaluer</button>
                     </div>
                     <div class="row mt-1 mb-2 col-12">
                         <a class="btn btn-outline-warning fa btn-title btn-ms col-5 ml-4"

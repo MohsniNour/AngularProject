@@ -5,7 +5,7 @@ import { ShowStockComponent } from './show-stock/show-stock.component';
 import { EditStockComponent } from './edit-stock/edit-stock.component';
 import { DeleteStockComponent } from './delete-stock/delete-stock.component';
 import { DetailStockComponent } from './detail-stock/detail-stock.component';
-import { StarComponentComponent } from './star-component/star-component.component';
+import { StarComponentComponent } from './ngbd-rating-template/star-component.component';
 
 const routes: Routes = [
   { path: 'ShowActiveStocks', component: ShowStockComponent },
