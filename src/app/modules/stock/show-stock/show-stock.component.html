@@ -187,7 +187,7 @@
                     </div>
                     <div *ngIf="item.rating<5" class="row mt-1 ml-2 d-flex flex-wrap col-12">
                         <button class="btn btn-outline-success fa btn-title btn-ms col-10 ml-2 mb-2"
-                            (click)="Rate(item.idStock)">Evaluer</button>
+                            (click)="Rate(item.idStock)">j'aime</button>
                     </div>
                 </div>
                 <div *ngIf="item.qteStock > item.qteMin">
@@ -195,10 +195,10 @@
                         <a class="btn btn-outline-info fa btn-title btn-ms ml-3"
                             (click)="openupdate(detailsContent)">Details</a>
                         <button class="btn btn-outline-success fa btn-title btn-ms ml-4"
-                            (click)="Rate(item.idStock)">Evaluer</button>
+                            (click)="Rate(item.idStock)">j'aime</button>
                     </div>
-                    <div *ngIf="item.rating===5" class="row mt-1 ml-2 d-flex flex-wrap">
-                        <a class="btn btn-outline-info fa btn-title btn-ms ml-3"
+                    <div *ngIf="item.rating===5" class="row mt-1 ml-2  d-flex flex-wrap">
+                        <a class="btn btn-outline-info col-9 fa btn-title btn-ms ml-3"
                             (click)="openupdate(detailsContent)">Details</a>
                     </div>
                     <div class="row mt-1 col-12">
