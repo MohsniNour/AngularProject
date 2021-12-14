@@ -116,18 +116,7 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
 
   GetListSearch() {
     if (this.search === "") {
-      this.service.fetchStocks().subscribe(
-        (t) => {
-          console.log('test');
-          console.log(t);
-
-          this.ListStock = t;
-        },
-        (error) => {
-          console.log(error);
-          console.log("test");
-        }
-      );
+      this.ActivateStock();
     }
     else {
       this.service.searchStocks(this.search).subscribe(
@@ -145,6 +134,32 @@ export class ShowStockComponent implements OnInit, AfterViewInit {
         }
       );
     }
+  }
+  stockRate = new Stock();
+  Rate(id: number) {
+    this.service.fetchStocksById(id).subscribe(
+      (t) => {
+        console.log(t);
+        this.stockRate = t;
+        console.log('le stock est :');
+        console.log(this.stockRate);
+        this.service.RateStock(this.stockRate).subscribe(
+          () => {
+            console.log('test');
+            console.log(id);
+            console.log(this.stock);
+            this.ActivateStock();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
   }
 
   stockActivate = new Stock();

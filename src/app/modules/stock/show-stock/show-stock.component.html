@@ -150,21 +150,21 @@
                     <div *ngFor="let index of Rate2" class="">
                         <img src="../../../../assets/img/etoile.png" class="img ml-1" />
                     </div>
-                    <div *ngFor="let index of Rate3" class=""></div>
+                    <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
+                    <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
                     <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
                 </div>
-                <div *ngIf="item.rating===3" class="my-2">
-                    <div *ngFor="let index of Rate3" class="ml-3 d-flex flex-wrap">
+                <div *ngIf="item.rating===3" class="my-2 d-flex flex-wrap">
+                    <div *ngFor="let index of Rate3" class="">
                         <img src="../../../../assets/img/etoile.png" class="img ml-1" />
                     </div>
-                    <div *ngFor="let index of Rate2" class="ml-3 d-flex flex-wrap"></div>
+                    <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
                     <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
                 </div>
-                <div *ngIf="item.rating===4" class="my-2">
-                    <div *ngFor="let index of Rate4" class="ml-3 d-flex flex-wrap">
+                <div *ngIf="item.rating===4" class="my-2 d-flex flex-wrap">
+                    <div *ngFor="let index of Rate4" class="">
                         <img src="../../../../assets/img/etoile.png" class="img ml-1" />
                     </div>
-                    <div *ngFor="let index of Rate1" class="ml-3 d-flex flex-wrap"></div>
                     <img src="../../../../assets/img/etoilevide.png" class="img ml-1" />
                 </div>
                 <div *ngIf="item.rating===5" class="my-2 d-flex flex-wrap">
@@ -185,19 +185,23 @@
                         <button [routerLink]="['/DeleteStock']"
                             class="btn btn-outline-danger fa  btn-title btn-ms ml-2">Supprimer</button>
                     </div>
-                    <div class="row mt-1 ml-2 d-flex flex-wrap col-12">
+                    <div *ngIf="item.rating<5" class="row mt-1 ml-2 d-flex flex-wrap col-12">
                         <button class="btn btn-outline-success fa btn-title btn-ms col-10 ml-2 mb-2"
-                            (click)="openupdate(updateContent)">Evaluer</button>
+                            (click)="Rate(item.idStock)">Evaluer</button>
                     </div>
                 </div>
                 <div *ngIf="item.qteStock > item.qteMin">
-                    <div class="row mt-1 ml-2 d-flex flex-wrap">
+                    <div *ngIf="item.rating<5" class="row mt-1 ml-2 d-flex flex-wrap">
                         <a class="btn btn-outline-info fa btn-title btn-ms ml-3"
                             (click)="openupdate(detailsContent)">Details</a>
                         <button class="btn btn-outline-success fa btn-title btn-ms ml-4"
-                            (click)="openupdate(rateContent)">Evaluer</button>
+                            (click)="Rate(item.idStock)">Evaluer</button>
                     </div>
-                    <div class="row mt-1 mb-2 col-12">
+                    <div *ngIf="item.rating===5" class="row mt-1 ml-2 d-flex flex-wrap">
+                        <a class="btn btn-outline-info fa btn-title btn-ms ml-3"
+                            (click)="openupdate(detailsContent)">Details</a>
+                    </div>
+                    <div class="row mt-1 col-12">
                         <a class="btn btn-outline-warning fa btn-title btn-ms col-5 ml-4"
                             (click)="openupdate(updateContent)">Modifier</a>
                         <a (click)="Delete(item.idStock)"
