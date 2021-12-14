@@ -1,18 +1,37 @@
 <form #modelF="ngForm">
-
-    <label>Id stock </label>
-    <input type="number" class="form-control" name="idStock" [(ngModel)]="stock.idStock"
-        #idStock="ngModel" disabled />
-
-    <label>Libelle </label>
-    <input type="text" class="form-control" name="libelleStock" [(ngModel)]="stock.libelleStock"
-        #libelleStock="ngModel" />
-
-    <label>Quantité stock</label>
-    <input type="number" class="form-control" [(ngModel)]="stock.qteStock" #qteStock="ngModel" name="qteStock" />
-
-    <label>Quantité minimum</label>
-    <input type="number" class="form-control" name="qteMin" [(ngModel)]="stock.qteMin" #qteMin="ngModel" />
-
-    <input type="submit" class="btn btn-primary mt-3" value="Modifier" (click)="UpdateStock(modelF.value)" />
+    <div class="row col-12 mt-3">
+        <div class="col-6">
+            <input type="number" class="form-control" style="display: none" name="idStock" [(ngModel)]="stock.idStock"
+                #idStock="ngModel" disabled />
+        </div>
+    </div>
+    <div class="row col-12 mt-3">
+        <div class="col-4">
+            <label>Libelle </label>
+        </div>
+        <div class="col-6">
+            <input type="text" class="form-control" name="libelleStock" [(ngModel)]="stock.libelleStock"
+                #libelleStock="ngModel" />
+        </div>
+    </div>
+    <div class="row col-12 mt-3">
+        <div class="col-4">
+            <label>Quantité stock</label>
+        </div>
+        <div class="col-6">
+            <input type="number" class="form-control" [(ngModel)]="stock.qteStock" #qteStock="ngModel"
+                name="qteStock" />
+        </div>
+    </div>
+    <div class="row col-12 mt-3">
+        <div class="col-4">
+            <label>Quantité minimum</label>
+        </div>
+        <div class="col-6">
+            <input type="number" class="form-control" name="qteMin" [(ngModel)]="stock.qteMin" #qteMin="ngModel" />
+        </div>
+    </div>
+    <div class="row col-12 btn mt-3">
+        <input type="submit" class="btn btn-success mt-3 col-3" value="Modifier" (click)="UpdateStock(modelF.value)" />
+    </div>
 </form>
