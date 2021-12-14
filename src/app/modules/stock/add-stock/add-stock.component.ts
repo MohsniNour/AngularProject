@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, RequiredValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Stock } from 'src/app/Models/Stock';
 import { StockService } from 'src/app/service/stock/stock.service';
@@ -17,9 +17,10 @@ export class AddStockComponent implements OnInit {
 
   stock!: Stock[];
   stockForm = new FormGroup({
-    qteStock: new FormControl(''),
-    qteMin: new FormControl(''),
-    libelleStock: new FormControl(''),
+    qteStock: new FormControl('', [Validators.required, Validators.min(100)]),
+    qteMin: new FormControl('', [Validators.required, Validators.max(500)]),
+    libelleStock: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern('^[a-zA-Z][a-zA-Z0-9]*')]),
+    urlImage: new FormControl('', Validators.required)
   });
   constructor(private service: StockService, private router: Router) { }
 
@@ -53,6 +54,8 @@ export class AddStockComponent implements OnInit {
   SaveStock(data: Stock) {
     data.idStock = this.GetMaxId(this.stock);
     console.log(data.idStock);
+    data.urlImage = "assets/img/" + data.urlImage.substr(12, data.urlImage.length);
+    console.log(data.urlImage);
     this.service.addStock(data).subscribe(
       () => {
         this.notif.emit(data),
@@ -63,5 +66,11 @@ export class AddStockComponent implements OnInit {
       }
     );
   }
+
+  get libelleStock() { return this.stockForm.get('libelleStock'); }
+  get qteStock() { return this.stockForm.get('qteStock'); }
+  get qteMin() { return this.stockForm.get('qteMin'); }
+  get urlImage() { return this.stockForm.get('urlImage'); }
+
 
 }

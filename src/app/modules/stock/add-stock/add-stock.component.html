@@ -1,4 +1,4 @@
-<div class="container my-4">
+<div class="container my-5">
   <div class="row col-12">
     <h2 class="fa col-8">Ajouter un nouveau stock</h2>
     <a [routerLink]="['/ShowActiveStocks']" class="col-4">
@@ -8,21 +8,65 @@
     </a>
   </div>
 </div>
-<div class="container my-2 w-100" id="about">
+<div class="container my-5" id="about">
   <form [formGroup]="stockForm" (ngSubmit)="SaveStock(stockForm.value)">
     <div class="mb-3">
-      <label for="" class="form-label">Libelle stock</label>
-      <input formControlName="libelleStock" type="text" class="form-control" id="libelleStock" />
+      <div class="row col-12 mt-5">
+        <div class="col-4">
+          <label for="" class="form-label">Nom du nouveau stock</label>
+        </div>
+        <div class="col-6">
+          <input formControlName="libelleStock" type="text" class="form-control" id="libelleStock" />
 
-      <label for="" class="form-label">Qantité stock</label>
-      <input formControlName="qteStock" type="number" class="form-control" id="qteStock" />
-
-      <label for="" class="form-label">Quantité minimum du stock</label>
-      <input formControlName="qteMin" type="number" class="form-control" id="qteMin" />
-      <br>
-
-    </div>
-
-    <button type="submit" class="btn btn-primary">Ajouter</button>
+          <div *ngIf="libelleStock?.errors?.required">
+            <span class="help-block">le nom d'un stock est obligatoire.</span><br>
+          </div>
+          <div *ngIf="libelleStock?.errors?.['minlength']">
+            le nom doit contient au minimum 4 lettres
+          </div>
+          <div *ngIf="libelleStock?.errors?.pattern">
+            le nom doit commencer obligatoirement par une lettre et contient que des lettres et des chiffres
+          </div>
+        </div>
+      </div>
+      <div class="row col-12 mt-5">
+        <div class="col-4">
+          <label for="" class="form-label">Qantité du stock</label>
+        </div>
+        <div class="col-6">
+          <input formControlName="qteStock" type="number" class="form-control" id="qteStock" />
+          <div *ngIf="qteStock?.errors?.required">
+            <span class="help-block">la quantité est obligatoire.</span><br>
+          </div>
+          <div *ngIf="qteStock?.errors?.['min']">
+            la quantité est obligatoirement > 10
+          </div>
+        </div>
+      </div>
+      <div class="row col-12 mt-5">
+        <div class="col-4">
+          <label for="" class="form-label">Quantité minimum du stock</label>
+        </div>
+        <div class="col-6">
+          <input formControlName="qteMin" type="number" class="form-control" id="qteMin" />
+          <div *ngIf="qteMin?.errors?.required">
+            <span class="help-block">la quantité est obligatoire.</span><br>
+          </div>
+          <div *ngIf="qteMin?.errors?.['max']">
+            la quantité est obligatoirement < 500 </div>
+          </div>
+        </div>
+      </div>
+      <div class="row col-12 my-5">
+        <div class="col-4">
+          <label for="" class="form-label">Image stock</label>
+        </div>
+        <div class="col-6">
+          <input formControlName="urlImage" type="file" class="" id="urlImage">
+        </div>
+      </div>
+      <div class="col-12 addbtn" mt-5>
+        <button type="submit" class="btn btn-success col-3 mt-5" [disabled]="stockForm.invalid">Ajouter</button>
+      </div>
   </form>
 </div>
